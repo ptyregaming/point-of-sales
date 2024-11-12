@@ -1,4 +1,3 @@
-// src/components/TableManagement.js
 import React, { useState, useEffect } from 'react';
 import { database, ref, set, onValue } from '../firebaseConfig';
 
@@ -15,10 +14,10 @@ function TableManagement() {
   }, []);
 
   const addOrderToTable = () => {
-    if (newOrder.tableId) { // Ensure a table ID is provided
+    if (newOrder.tableId) { // buat table ID
       const tableRef = ref(database, `tables/${newOrder.tableId}`);
       set(tableRef, newOrder).then(() => {
-        setNewOrder({ tableId: '', items: [], status: 'Pending' }); // Reset after adding
+        setNewOrder({ tableId: '', items: [], status: 'Pending' }); // Reset setelah nambahkan
       });
     } else {
       alert('Please enter a valid Table ID.');

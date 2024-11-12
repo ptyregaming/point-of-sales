@@ -1,4 +1,3 @@
-// src/components/Menu.js
 import React, { useEffect, useState } from 'react';
 import { database, ref, set, onValue } from '../firebaseConfig';
 
@@ -7,7 +6,7 @@ function Menu() {
   const [newItem, setNewItem] = useState({ name: '', price: 0 });
 
   useEffect(() => {
-    // Reference to the 'menu' collection in Firebase
+    // Reference ke 'menu' collection di Firebase
     const menuRef = ref(database, 'menu/');
     onValue(menuRef, (snapshot) => {
       const data = snapshot.val();
@@ -15,12 +14,12 @@ function Menu() {
     });
   }, []);
 
-  // Adds new item to Firebase database
+  // isi item baru di Firebase database
   const addItem = () => {
-    if (newItem.name && newItem.price > 0) { // Validate item name and price
+    if (newItem.name && newItem.price > 0) { // cek nama item dan harga
       const newItemRef = ref(database, `menu/${newItem.name}`);
       set(newItemRef, newItem).then(() => {
-        setNewItem({ name: '', price: 0 }); // Reset after adding
+        setNewItem({ name: '', price: 0 }); // reset setelah merubah
       });
     } else {
       alert('Please provide a valid item name and price.');
